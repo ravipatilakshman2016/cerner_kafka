@@ -110,6 +110,15 @@ remote_file "#{Chef::Config[:file_cache_path]}/#{binaryFileName}" do
   backup false
 end
 
+# Create init.d script for kafka
+template "/etc/init.d/kafka" do
+  source "kafka_initd.erb"
+  owner "root"
+  group "root"
+  mode  00755
+  notifies :restart, "service[kafka]"
+end
+
 # Untar kafka binary file (this will only run if the real kafka directory /opt/kafka_1.2.3 does not exist)
 # We actually untar the file into /opt (not /opt/kafka)
 execute "untar kafka binary" do
@@ -185,15 +194,6 @@ end
 # Link kafka config to /etc/kafka
 link "/etc/kafka" do
   to "#{node["kafka"]["install_dir"]}/config"
-end
-
-# Create init.d script for kafka
-template "/etc/init.d/kafka" do
-  source "kafka_initd.erb"
-  owner "root"
-  group "root"
-  mode  00755
-  notifies :restart, "service[kafka]"
 end
 
 # Start/Enable Kafka
