@@ -49,8 +49,8 @@ kafkaFullDirectoryName = "kafka_#{node["kafka"]["scala_version"]}-#{node["kafka"
 log "Installing kafka_#{node["kafka"]["scala_version"]}-#{node["kafka"]["version"]}"
 log "Binary URL : #{node["kafka"]["binary_url"]}"
 
-include_recipe "java"
-include_recipe "ulimit"
+# include_recipe "java"
+# include_recipe "ulimit"
 
 # setup kafka group
 group node["kafka"]["group"] do
