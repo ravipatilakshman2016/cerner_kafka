@@ -22,7 +22,7 @@ default["kafka"]["zookeepers"] = nil
 
 default["kafka"]["shutdown_timeout"] = 30     # init.d script shutdown time-out in seconds
 default["kafka"]["env_vars"]["JMX_PORT"] = "9999"
-default["kafka"]["env_vars"]["KAFKA_HEAP_OPTS"] = "\"-Xmx4G -Xms4G\""
+default["kafka"]["env_vars"]["KAFKA_HEAP_OPTS"] = "\"-Xmx256m -Xms128m\""
 default["kafka"]["env_vars"]["KAFKA_JVM_PERFORMANCE_OPTS"] = "\"-XX:PermSize=48m -XX:MaxPermSize=48m -XX:+UseG1GC -XX:MaxGCPauseMillis=20 -XX:InitiatingHeapOccupancyPercent=35\""
 default["kafka"]["lib_jars"] = []
 
